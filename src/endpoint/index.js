@@ -1,11 +1,15 @@
-import store from '../store/'
+import store from '../store'
+import endpoint from '../endpoint/settings'
 
 console.log('store',store)
 
 export default {
 
-    login({ email, password }){
-        return { email, password }
+    login({ user, password }){
+        return endpoint.post({
+            url: 'login',
+            params: { user, password },
+        })
     },
     register({ email, password }){
         return { email, password }

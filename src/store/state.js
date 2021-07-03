@@ -1,6 +1,7 @@
 export default {
     theme: 'orange',
     user: {
+        fetchingData: false,
         loggedIn: false,
         data: null,
         error: null,

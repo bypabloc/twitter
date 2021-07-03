@@ -1,10 +1,13 @@
 import * as types from './mutations-types'
-import API from '@/api'
+import endpoint from '../endpoint'
 
 export default {
 
-    login({ commit }, data ) {
-        API.login(data)
+    login({ commit }, { user, password } ) {
+
+        commit( types.FETCH_LOGIN_REQUEST )
+
+        endpoint.login({ user, password })
             .then(data => {
                 commit( types.USER_LOGIN, data.user )
             } )
@@ -12,22 +15,10 @@ export default {
                     commit(types.USER_LOGIN_FAILURE, err.message ) 
             } )
     },
-    loginWithGoogle({ commit }, { displayName, email } ) {
-        // displayName: 'Pablo Contreras',
-        // email: 'pacg1991@gmail.com',
-        API.loginWithGoogle({ displayName, email })
-            .then(data => {
-                commit( types.USER_LOGIN, data )
-                // this.dispatch('fetchConfig');
-            } )
-            .catch(err => {
-                commit(types.USER_LOGIN_FAILURE, err.message ) 
-            } )
-    },
     register({ commit }, data ) {
-        API.register(data)
+        endpoint.register(data)
             .then(res => {
-                API.createConfig(data.email)
+                endpoint.createConfig(data.email)
                 commit( types.USER_LOGIN, res.user )
             } )
             .catch(err => {
@@ -51,7 +42,7 @@ export default {
     },
 
     fetchLogout({commit} ){
-        API.logout()
+        endpoint.logout()
             .then(() => {
                 commit( types.USER_LOGOUT )
             } )
@@ -59,7 +50,7 @@ export default {
 
     fetchConfig({commit}){
         commit(types.FETCH_CONFIG_REQUEST)
-        API.getConfig()
+        endpoint.getConfig()
             .then( snap => { 
                 const configs = [];
                 console.log('snap',snap);
@@ -76,7 +67,7 @@ export default {
             })
     },
     createConfig({commit}, email){
-        API.createConfig(email)
+        endpoint.createConfig(email)
             .then( res => {
                 commit(types.CREATE_CONFIG, res )
             } )
@@ -95,7 +86,7 @@ export default {
             };
         },{});
 
-        API.saveConfig( dataNew )
+        endpoint.saveConfig( dataNew )
             .then( () => {
                 commit(types.SAVE_CONFIG, dataNew )
             } )
@@ -105,7 +96,7 @@ export default {
     },
     saveImg({commit}, { img } ){
         commit == 1;
-        API.saveImg( { img } )
+        endpoint.saveImg( { img } )
             .then( res => {
                 this.dispatch('saveConfig', {img:res.img});
                 // saveConfig({img:res})
@@ -118,7 +109,7 @@ export default {
     fetchProuds({commit}){
         commit(types.FETCH_PROUDS_REQUEST)
 
-        API.getListAllProuds()
+        endpoint.getListAllProuds()
             .then(snap => { 
                 const prouds = [];
                 snap.forEach(data => {
@@ -136,7 +127,7 @@ export default {
             )
     },
     addProud({commit}, {title, description, icon }){
-        API.postProud(title, description, icon )
+        endpoint.postProud(title, description, icon )
             .then(proud => {
                 commit(types.ADD_PROUD, {
                     id: proud.id,
@@ -147,7 +138,7 @@ export default {
     saveProud({commit}, saveProud ){
         const id = saveProud?.id
         if(id){
-            API.saveProud( saveProud )
+            endpoint.saveProud( saveProud )
                 .then(() => {
                     commit(types.SAVE_PROUD, {
                         ...saveProud,
@@ -155,7 +146,7 @@ export default {
                     } )
                 } )
         }else{
-            API.postProud( saveProud )
+            endpoint.postProud( saveProud )
                 .then(proud => {
                     commit(types.ADD_PROUD, {
                         ...saveProud,
@@ -170,7 +161,7 @@ export default {
     },
     updateProud({commit}, prouds ){
         console.log('actions->updateProud')
-        API.updateProud( prouds )
+        endpoint.updateProud( prouds )
             .then( () => {
                 console.log('actions->then')
                 commit(types.UPDATE_PROUD, prouds )
@@ -185,7 +176,7 @@ export default {
         commit(types.EDITING_PROUD, {id, status} )
     },
     remProud({commit}, id ){
-        API.remProud(id)
+        endpoint.remProud(id)
             .then(() => {
                 commit(types.REM_PROUD, id )
             } )
@@ -197,7 +188,7 @@ export default {
     fetchEducations({commit}){
         commit(types.FETCH_EDUCATIONS_REQUEST)
 
-        API.getListAllEducations()
+        endpoint.getListAllEducations()
             .then(snap => commit(types.FETCH_EDUCATIONS_SUCCESS, { educations: snap.val() }))
             .catch(error => commit(types.FETCH_EDUCATIONS_FAILURE, { error }) )
     },
@@ -205,22 +196,22 @@ export default {
     fetchSkills({commit}){
         commit(types.FETCH_SKILLS_REQUEST)
 
-        API.getListAllSkills()
+        endpoint.getListAllSkills()
             .then(snap => commit(types.FETCH_SKILLS_SUCCESS, { skills: snap.val() }))
             .catch(error => commit(types.FETCH_SKILLS_FAILURE, { error }) )
     },
 
     addEducation({commit}, {title, description, start, end, finished }){
-        API.postEducation(title, description, start, end, finished )
+        endpoint.postEducation(title, description, start, end, finished )
             .then(education => commit(types.ADD_EDUCATION, { education } ) )
     },
     postSkill({commit}, { text, percentage, icon }){
-        API.postSkill( text, percentage, icon )
+        endpoint.postSkill( text, percentage, icon )
             .then(skill => commit(types.ADD_SKILL, { skill } ) )
     },
 
     deleteProud({commit},{proudId}){
-        API.deleteProud(proudId)
+        endpoint.deleteProud(proudId)
             .then( () => commit(types.DELETE_PROUD), {proudId} )
     }
 }

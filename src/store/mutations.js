@@ -1,19 +1,16 @@
-import Vue from 'vue'
 import * as types from './mutations-types'
-import router from '@/router'
+import router from '../router'
 
 export default {
 
     [types.USER_LOGGED_IN] (state, value){
         state.user.loggedIn = value;
     },
-    [types.USER_REGISTER_FAILURE] (state, error ){
-        state.user.data = null;
-        state.user.loggedIn = null;
-        state.user.register.error = error;
-        localStorage.removeItem('user')
+    [types.FETCH_LOGIN_REQUEST] ( state ){
+        state.user.fetchingData = true;
     },
     [types.USER_LOGIN_FAILURE] (state, error ){
+        state.user.fetchingData = false;
         state.user.data = null;
         state.user.loggedIn = null;
         state.user.error = error;
@@ -22,6 +19,7 @@ export default {
         localStorage.removeItem('user')
     },
     [types.USER_LOGIN] (state, { displayName, email, img, nickname } ){
+        state.user.fetchingData = false;
         const data = { displayName, email, img, nickname };
         state.data.config.data = data;
         state.user.error = null;
@@ -198,13 +196,4 @@ export default {
         state.prouds = Object.values(state.prouds)
             .filter(proud => proud.id !== proud_id)
     },
-
-    [types.ADD_EDUCATION] (state, { education }){
-        Vue.set(state.educations, education.id, education )
-    },
-    [types.ADD_SKILL] (state, { skill }){
-
-        Vue.set(state.skills, skill.id, skill )
-    },
-    
 }
