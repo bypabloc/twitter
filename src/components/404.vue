@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid vh-100 d-flex flex-column">
-        <div :class="'row flex-grow-1 theme-bg-'+[theme]+'-600'">
+        <div :class="'row flex-grow-1 theme-bg--600'">
             <main :class="'col p-4 flex-fill'">
                 <div class="moon theme-light-blue-800"></div>
                     <div class="moon__crater moon__crater1"></div>
