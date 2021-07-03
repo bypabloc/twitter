@@ -8,8 +8,11 @@ export default {
         commit( types.FETCH_LOGIN_REQUEST )
 
         endpoint.login({ user, password })
-            .then(data => {
-                commit( types.USER_LOGIN, data.user )
+            .then( response => {
+                response.json().then(function(data) {
+                    const { token, name, email, nickname } = data
+                    commit( types.USER_LOGIN, { token, name, email, nickname } )
+                });
             } )
             .catch(err => {
                     commit(types.USER_LOGIN_FAILURE, err.message ) 
@@ -26,6 +29,13 @@ export default {
             } )
     },
 
+    fetchLogout({commit} ){
+        endpoint.logout()
+            .then(() => {
+                commit( types.USER_LOGOUT )
+            } )
+    },
+
     fetchUser({ commit }, user) {
         commit("USER_LOGGED_IN", user !== null);
         console.log('fetchUser',user)
@@ -39,13 +49,6 @@ export default {
         } else {
             commit("USER", null);
         }
-    },
-
-    fetchLogout({commit} ){
-        endpoint.logout()
-            .then(() => {
-                commit( types.USER_LOGOUT )
-            } )
     },
 
     fetchConfig({commit}){

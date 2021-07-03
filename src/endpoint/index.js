@@ -1,7 +1,4 @@
-import store from '../store'
 import endpoint from '../endpoint/settings'
-
-console.log('store',store)
 
 export default {
 

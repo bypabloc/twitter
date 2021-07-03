@@ -1,5 +1,4 @@
 export default {
-    theme: 'orange',
     user: {
         fetchingData: false,
         loggedIn: false,

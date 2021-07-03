@@ -18,16 +18,14 @@ export default {
 
         localStorage.removeItem('user')
     },
-    [types.USER_LOGIN] (state, { displayName, email, img, nickname } ){
+    [types.USER_LOGIN] (state, { token, name, email, nickname } ){
         state.user.fetchingData = false;
-        const data = { displayName, email, img, nickname };
-        state.data.config.data = data;
+        const data = { token, name, email, nickname };
         state.user.error = null;
         state.user.register.error = null;
         state.user.data = data;
         state.user.loggedIn = true;
         localStorage.setItem('user', JSON.stringify(data))
-        localStorage.setItem('config', JSON.stringify(data))
         router.push({ name: "dashboard" });
     },
     [types.USER_LOGOUT] (state){
