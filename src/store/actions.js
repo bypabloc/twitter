@@ -36,15 +36,14 @@ export default {
             } )
     },
 
-    fetchUser({ commit }, user) {
-        commit("USER_LOGGED_IN", user !== null);
-        console.log('fetchUser',user)
-        if (user) {
-            commit("USER", {
-                displayName: user.displayName,
-                email: user.email,
-                img: user.img,
-                nickname: user.nickname,
+    fetchUser({ commit }, data ) {
+        console.log('fetchUser',data)
+        if (data) {
+            commit("USER", { 
+                token: data?.token,
+                name: data?.name,
+                email: data?.email,
+                nickname: data?.nickname,
             });
         } else {
             commit("USER", null);

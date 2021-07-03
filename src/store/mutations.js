@@ -39,8 +39,14 @@ export default {
     },
     [types.USER] (state, data){
         state.user.data = data;
-        state.data.config.data = data;
-        localStorage.setItem('user', JSON.stringify(data))
+        if(data){
+            state.user.loggedIn = true;
+            localStorage.setItem('user', JSON.stringify(data))
+            router.push({ name: "dashboard" });
+        }else{
+            state.user.loggedIn = false;
+            localStorage.removeItem('user')
+        }
     },
     [types.FETCH_CONFIG_REQUEST] (state){
         state.data.config.fetchingData = true;

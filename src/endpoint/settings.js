@@ -10,6 +10,7 @@ let headers = {
 const user = localStorage.getItem('user')
 if(user){
     const userData = JSON.parse(user)
+    console.log('userData',userData)
     headers['Authorization'] = `Bearer ${userData.token}`
 }    
 
