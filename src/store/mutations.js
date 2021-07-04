@@ -49,7 +49,7 @@ export default {
             localStorage.removeItem('user')
         }
     },
-    [types.USER_REGISTER_SUCCESS] (state){
+    [types.USER_REGISTER] (state){
         state.user.register.fetchingData = true;
         state.user.register.error = null;
     },
@@ -58,9 +58,6 @@ export default {
         state.user.register.error = error;
     },
 
-    // export const FETCH_TWITTERS_REQUEST = 'FETCH_TWITTERS_REQUEST';
-    // export const FETCH_TWITTERS_SUCCESS = 'FETCH_TWITTERS_SUCCESS';
-    // export const FETCH_TWITTERS_FAILURE = 'FETCH_TWITTERS_FAILURE';
     [types.FETCH_TWITTERS_REQUEST] (state){
         state.twitters.fetchingData = true;
         state.twitters.error = null;
