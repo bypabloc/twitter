@@ -21,12 +21,14 @@ export default {
             method: 'GET', 
             mode: 'cors',
             cache: 'no-cache', 
+            baseURL,
             headers,
             redirect: 'follow', 
             referrerPolicy: 'no-referrer', 
         });
 
-        return instance.get(`${baseURL}/${url}`,params)
+        return instance.get(url,params)
+            .then( res => res.data )
     },
     post({url,params}){
         const user = localStorage.getItem('user')

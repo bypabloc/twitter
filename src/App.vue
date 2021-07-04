@@ -1,11 +1,9 @@
 <template>
-    <div class="container-fluid vh-100 d-flex flex-column">
+    <div>
         <navbar/>
-        <div class="row flex-grow-1">
-            <main :class="'col p-4 flex-grow-1 content theme--200' ">
-                <router-view></router-view>
-            </main>
-        </div>
+        <main>
+            <router-view></router-view>
+        </main>
     </div>
 </template>
 

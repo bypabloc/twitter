@@ -10,9 +10,14 @@ export default {
         },
     },
 
-    twitter: {
+    twitters: {
         fetchingData: false,
         error: null,
-        list: [],
+        data: [],
+        save: {
+            fetchingData: false,
+            error: null,
+            data: {},
+        },
     },
 }

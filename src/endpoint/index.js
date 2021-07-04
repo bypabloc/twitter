@@ -14,54 +14,22 @@ export default {
             params: { email, password, name, nickname },
         })
     },
-
     logout(){
         return endpoint.get({
             url: 'logout',
         })
     },
 
-    getConfig(){
-        return { }
+    getTwitters(){
+        return endpoint.get({
+            url: 'tweets',
+        })
     },
-    createConfig( userEmail ){
-        return { userEmail }
-    },
-    saveConfig( data ){
-        return { data }
-    },
-    saveImg( { img } ){
-        return { img }
-    },
-
-    getListAllProuds(){
-        return { }
-    },
-    postProud( { title, description, icon, idx } ){
-        return { title, description, icon, idx }
-    },
-    saveProud( { id, title, description, icon, idx } ){
-        return { id, title, description, icon, idx }
-    },
-    updateProud ( prouds ){
-        return { prouds }
-    },
-    remProud( proudId ){
-        return { proudId }
-    },
-
-    getListAllEducations(){
-        return { }
-    },
-    postEducation( { title, description, start, end, finished } ){
-        return { title, description, start, end, finished }
-    },
-
-    getListAllSkills(){
-        return { }
-    },
-    postSkill( text, percentage, icon ){
-        return { text, percentage, icon }
+    saveTwitter( { text } ){
+        return endpoint.post({
+            url: 'tweets/new_tweet',
+            params: { text },
+        })
     },
 }
 

@@ -1,84 +1,72 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Register</div>
-                <div class="card-body">
-                    <div v-if="user?.register?.error" class="alert alert-danger">{{ user.register.error }}</div>
-                    <form action="#" @submit.prevent="submit">
-                        
-                        <div class="mb-3 row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+    <div>
+        <div>Register</div>
+        <div>
+            <div v-if="user?.register?.error">{{ user.register.error }}</div>
+            <form action="#" @submit.prevent="submit">
+                
+                <div>
+                    <label for="name">Name</label>
 
-                            <div class="col-md-6">
-                                <input
-                                    type="name"
-                                    class="form-control"
-                                    name="name"
-                                    value
-                                    required
-                                    autofocus
-                                    v-model="form.name"
-                                />
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label for="nickname" class="col-md-4 col-form-label text-md-right">Alias</label>
-
-                            <div class="col-md-6">
-                                <input
-                                    type="name"
-                                    class="form-control"
-                                    name="nickname"
-                                    value
-                                    required
-                                    autofocus
-                                    v-model="form.nickname"
-                                />
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
-
-                            <div class="col-md-6">
-                                <input
-                                    type="email"
-                                    class="form-control"
-                                    name="email"
-                                    value
-                                    required
-                                    autofocus
-                                    v-model="form.email"
-                                />
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-
-                            <div class="col-md-6">
-                            <input
-                                type="password"
-                                class="form-control"
-                                name="password"
-                                required
-                                v-model="form.password"
-                            />
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                            <button type="submit" class="btn btn-primary">Register</button>
-                            </div>
-                        </div>
-                    </form>
+                    <div>
+                        <input
+                            type="name"
+                            name="name"
+                            value
+                            required
+                            autofocus
+                            v-model="form.name"
+                        />
+                    </div>
                 </div>
-            </div>
-        </div>
+
+                <div>
+                    <label for="nickname">Alias</label>
+
+                    <div>
+                        <input
+                            type="name"
+                            name="nickname"
+                            value
+                            required
+                            v-model="form.nickname"
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label for="email">Email</label>
+
+                    <div>
+                        <input
+                            type="email"
+                            name="email"
+                            value
+                            required
+                            v-model="form.email"
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password">Password</label>
+
+                    <div>
+                    <input
+                        type="password"
+                        name="password"
+                        required
+                        v-model="form.password"
+                    />
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <button type="submit">Register</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </template>

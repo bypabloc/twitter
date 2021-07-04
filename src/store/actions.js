@@ -4,9 +4,7 @@ import endpoint, { getError } from '../endpoint'
 export default {
 
     login({ commit }, { user, password } ) {
-
         commit( types.FETCH_LOGIN_REQUEST )
-
         endpoint.login({ user, password })
             .then( res => {
                 const { token, name, email, nickname } = res.data
@@ -18,6 +16,7 @@ export default {
             })
     },
     register({ commit }, { email, password, name, nickname } ) {
+        commit( types.USER_REGISTER )
         endpoint.register({ email, password, name, nickname })
             .then(res => {
                 const { token, name, email, nickname } = res.data
@@ -32,7 +31,6 @@ export default {
 
     fetchLogout({commit} ){
         commit( types.FETCH_LOGIN_REQUEST )
-
         endpoint.logout()
             .then(() => {
                 commit( types.USER_LOGOUT )
@@ -44,7 +42,6 @@ export default {
     },
 
     fetchUser({ commit }, data ) {
-        console.log('fetchUser',data)
         if (data) {
             commit("USER", { 
                 token: data?.token,
@@ -58,26 +55,30 @@ export default {
     },
 
     fetchTwitters({commit}){
-        commit(types.FETCH_CONFIG_REQUEST)
-        endpoint.getConfig()
-            .then( snap => { 
-                const configs = [];
-                console.log('snap',snap);
-                snap.forEach(data => {
-                    configs.push({
-                        id: data.id,
-                        ...data.data(),
-                    });
-                });
-                commit( types.FETCH_CONFIG_SUCCESS, configs[0] )
-            })
+
+        commit(types.FETCH_TWITTERS_REQUEST)
+        endpoint.getTwitters()
+            .then(res => {
+                const { meta, links, data } = res
+                commit( types.FETCH_TWITTERS_SUCCESS, { meta, links, data } )
+            } )
             .catch( err => {
-                commit( types.FETCH_CONFIG_FAILURE, err.message ) 
+                const error = getError(err.response)?.message ? getError(err.response).message : 'Inaccesible'
+                commit( types.FETCH_TWITTERS_FAILURE, { error } )
             })
     },
     saveTwitter({commit}, { text } ){
-        console.log('text',text)
-        console.log('commit',commit)
+        commit( types.FETCH_TWITTER_SAVE_REQUEST )
+        endpoint.saveTwitter({ text })
+            .then(res => {
+                console.log('res',res)
+                // const { token, name, email, nickname } = res.data
+                // commit( types.FETCH_TWITTER_SAVE_SUCCESS, { token, name, email, nickname } )
+            } )
+            .catch( err => {
+                const error = getError(err.response)?.message ? getError(err.response).message : 'Inaccesible'
+                commit( types.FETCH_TWITTER_SAVE_FAILURE, { error } )
+            })
         /*
         if(id){
             endpoint.saveProud( saveProud )

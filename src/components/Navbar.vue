@@ -1,24 +1,22 @@
 <template>
-    <nav :class="'row navbar navbar-expand-lg theme--800'">
-        <div class="container-fluid">
-            <router-link to="/" :class="'navbar-brand theme-color--200'">Template CV</router-link>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+    <nav>
+        <div>
+            <router-link to="/">Twitter</router-link>
+            <button type="button">
+                <span ></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
+            <div>
+                <ul>
                     <template v-if="user.loggedIn">
                         <router-link to="Home"
-                            :class="'nav-link theme-color--200'"
                         >Home</router-link>
-                        <li class="nav-item dropdown">
-                            <a :class="'link-secondary nav-link dropdown-toggle theme-color--200'" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <li>
+                            <a href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{user.data.displayName}}
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <ul>
                                 <li>
                                     <router-link to="config"
-                                        :class="'dropdown-item theme-color--700'"
                                     >Config</router-link>
                                 </li>
                                 <li>
@@ -40,14 +38,12 @@
                         </li>
                     </template>
                     <template v-else>
-                        <li :class="'nav-item theme-color--200'">
+                        <li>
                             <router-link to="login"
-                                :class="'nav-link theme-color--200'"
                             >Login</router-link>
                         </li>
-                        <li :class="'nav-item theme-color--200'">
+                        <li>
                             <router-link to="register" 
-                                :class="'nav-link theme-color--200'"
                             >Register</router-link>
                         </li>
                     </template>

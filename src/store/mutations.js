@@ -49,160 +49,46 @@ export default {
             localStorage.removeItem('user')
         }
     },
+    [types.USER_REGISTER_SUCCESS] (state){
+        state.user.register.fetchingData = true;
+        state.user.register.error = null;
+    },
     [types.USER_REGISTER_FAILURE] (state, { error } ){
         state.user.register.fetchingData = false;
         state.user.register.error = error;
     },
-    [types.FETCH_CONFIG_REQUEST] (state){
-        state.data.config.fetchingData = true;
-        state.data.config.err = null;
+
+    // export const FETCH_TWITTERS_REQUEST = 'FETCH_TWITTERS_REQUEST';
+    // export const FETCH_TWITTERS_SUCCESS = 'FETCH_TWITTERS_SUCCESS';
+    // export const FETCH_TWITTERS_FAILURE = 'FETCH_TWITTERS_FAILURE';
+    [types.FETCH_TWITTERS_REQUEST] (state){
+        state.twitters.fetchingData = true;
+        state.twitters.error = null;
     },
-    [types.FETCH_CONFIG_SUCCESS] (state, data ){
-        state.data.config = {
-            fetchingData: false,
-            err: null,
-            data,
-        }
+    [types.FETCH_TWITTERS_SUCCESS] (state, { meta, links, data } ){
+        state.twitters.fetchingData = false;
+        state.twitters.error = null;
+        state.twitters.data = { meta, links, data };
     },
-    [types.FETCH_CONFIG_FAILURE] (state, { error }){
-        state.data.config = {
-            fetchingData: false,
-            err: error,
-            data: null,
-        }
-    },
-    [types.CREATE_CONFIG] (state, { id }){
-        state.data.config = {
-            fetchingData: false,
-            data: {
-                id,
-                img: null,
-            },
-        }
-    },
-    [types.SAVE_CONFIG] (state, data ){
-        state.data.config.fetchingData = false;
-        for (const key in data) {
-            state.data.config.data[key] = data[key];
-        }
+    [types.FETCH_TWITTERS_FAILURE] (state, { error }){
+        state.twitters.fetchingData = true;
+        state.twitters.error = error;
     },
 
-    // fetching prouds
-    [types.FETCH_PROUDS_REQUEST] (state){
-        state.fetchingData = true
-        state.error = null
+    // export const FETCH_TWITTER_SAVE_REQUEST = 'FETCH_TWITTER_SAVE_REQUEST';
+    // export const FETCH_TWITTER_SAVE_SUCCESS = 'FETCH_TWITTER_SAVE_SUCCESS';
+    // export const FETCH_TWITTER_SAVE_FAILURE = 'FETCH_TWITTER_SAVE_FAILURE';
+    [types.FETCH_TWITTER_SAVE_REQUEST] (state){
+        state.twitters.save.fetchingData = true;
+        state.twitters.save.error = null;
     },
-    [types.FETCH_PROUDS_SUCCESS] (state, { prouds }){
-        state.fetchingData = false
-        state.error = null
-
-        const proudsNews = Object.values(prouds).reduce((old,curr) => {
-            return [...old, {
-                id: curr.id,
-                icon: curr.icon,
-                title: curr.title,
-                description: curr.description,
-                idx: curr.idx,
-            }];
-        },[]);
-
-        state.prouds = proudsNews;
+    [types.FETCH_TWITTER_SAVE_SUCCESS] (state, { text } ){
+        state.twitters.save.fetchingData = false;
+        state.twitters.save.error = null;
+        state.twitters.save.data = { text };
     },
-    [types.FETCH_PROUDS_FAILURE] (state, { error }){
-        state.fetchingData = false
-        state.error = error
-    },
-
-    // fetching educations
-    [types.FETCH_EDUCATIONS_REQUEST] (state){
-        state.fetchingData = true
-        state.error = null
-    },
-    [types.FETCH_EDUCATIONS_SUCCESS] (state, { educations }){
-        state.fetchingData = false
-        state.error = null
-        state.educations = { ...educations }
-    },
-    [types.FETCH_EDUCATIONS_FAILURE] (state, { error }){
-        state.fetchingData = false
-        state.error = error
-    },
-
-    // fetching skills
-    [types.FETCH_SKILLS_REQUEST] (state){
-        state.fetchingData = true
-        state.error = null
-    },
-    [types.FETCH_SKILLS_SUCCESS] (state, { skills }){
-        state.fetchingData = false
-        state.error = null
-        state.skills = { ...skills }
-    },
-    [types.FETCH_SKILLS_FAILURE] (state, { error }){
-        state.fetchingData = false
-        state.error = error
-    },
-
-    [types.ADD_PROUD] (state, proud ){
-        state.prouds = [ ...Object.values(state.prouds) , {
-            ...proud,
-            editing: false,
-        }]
-    },
-    [types.SAVE_PROUD] ( state, proud ){
-        const prouds = Object.values(state.prouds)
-
-        const index = prouds.findIndex(e => {
-            return e.id == proud.id
-        });
-        prouds[index] = {
-            ...proud,
-            editing: false,
-        };
-        state.prouds = prouds;
-    },
-    [types.UPDATE_PROUD] ( state, prouds ){
-        console.log('mutations')
-
-        const proudsOld = Object.values(state.prouds)
-
-        console.log('proudsOld',proudsOld)
-        console.log('prouds to update',prouds)
-
-        const proudsNews = proudsOld.reduce((old,curr) => {
-
-            const item = prouds.find(e => {
-                return e.id==curr.id
-            });
-            console.log('item',item)
-
-            return [...old, {
-                id: item?.id ?? curr.id,
-                icon: item?.icon ?? curr.icon,
-                title: item?.title ?? curr.title,
-                description: item?.description ?? curr.description,
-                idx: item?.idx ?? curr.idx,
-            }];
-        },[]);
-        console.log('proudsNews',proudsNews)
-
-        const proudsSort = proudsNews.sort((a,b)=> (a.idx > b.idx ? 1 : -1))
-        console.log('proudsSort',proudsSort)
-
-        state.prouds = proudsNews;
-    },
-    [types.EDITING_PROUD] ( state, {id, status} ){
-        const prouds = Object.values(state.prouds)
-
-        const index = prouds.findIndex(e => {
-            return e.id == id
-        });
-        prouds[index]['editing'] = status;
-
-        state.prouds = prouds;
-    },
-    [types.REM_PROUD] ( state, proud_id ){
-        state.prouds = Object.values(state.prouds)
-            .filter(proud => proud.id !== proud_id)
+    [types.FETCH_TWITTER_SAVE_FAILURE] (state, { error }){
+        state.twitters.save.fetchingData = true;
+        state.twitters.save.error = error;
     },
 }
