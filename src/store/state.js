@@ -1,4 +1,6 @@
 export default {
+    theme: 'blue-gray',
+
     user: {
         fetchingData: false,
         loggedIn: false,
