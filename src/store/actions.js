@@ -71,9 +71,8 @@ export default {
         commit( types.FETCH_TWITTER_SAVE_REQUEST )
         endpoint.saveTwitter({ text })
             .then(res => {
-                console.log('res',res)
-                const { token, created_by, created_at } = res.data
-                commit( types.FETCH_TWITTER_SAVE_SUCCESS, { token, created_by, created_at } )
+                const { text, created_by, created_at } = res.data
+                commit( types.FETCH_TWITTER_SAVE_SUCCESS, { text, created_by, created_at } )
             } )
             .catch( err => {
                 const error = getError(err.response)?.message ? getError(err.response).message : 'Inaccesible'

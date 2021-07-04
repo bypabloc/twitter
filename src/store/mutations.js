@@ -75,20 +75,18 @@ export default {
         state.twitters.error = error;
     },
 
-    // export const FETCH_TWITTER_SAVE_REQUEST = 'FETCH_TWITTER_SAVE_REQUEST';
-    // export const FETCH_TWITTER_SAVE_SUCCESS = 'FETCH_TWITTER_SAVE_SUCCESS';
-    // export const FETCH_TWITTER_SAVE_FAILURE = 'FETCH_TWITTER_SAVE_FAILURE';
     [types.FETCH_TWITTER_SAVE_REQUEST] (state){
         state.twitters.save.fetchingData = true;
         state.twitters.save.error = null;
     },
-    [types.FETCH_TWITTER_SAVE_SUCCESS] (state, { text } ){
+    [types.FETCH_TWITTER_SAVE_SUCCESS] (state, { text, created_by, created_at } ){
         state.twitters.save.fetchingData = false;
         state.twitters.save.error = null;
-        state.twitters.save.data = { text };
+        state.twitters.save.data = { text, created_by, created_at };
+        state.twitters.data.data = [ { text, created_by, created_at } , ...state.twitters.data.data ];
     },
     [types.FETCH_TWITTER_SAVE_FAILURE] (state, { error }){
-        state.twitters.save.fetchingData = true;
+        state.twitters.save.fetchingData = false;
         state.twitters.save.error = error;
     },
 }

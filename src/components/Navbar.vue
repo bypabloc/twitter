@@ -2,49 +2,36 @@
     <nav>
         <div>
             <router-link to="/">Twitter</router-link>
-            <button type="button">
-                <span ></span>
-            </button>
             <div>
                 <ul>
                     <template v-if="user.loggedIn">
-                        <router-link to="Home"
-                        >Home</router-link>
+                        <router-link to="Home">
+                            Inicio
+                        </router-link>
                         <li>
-                            <a href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{user.data.displayName}}
+                            <a 
+                                href="#" 
+                                v-if="user.fetchingData"
+                            >
+                                Cargando...
                             </a>
-                            <ul>
-                                <li>
-                                    <router-link to="config"
-                                    >Config</router-link>
-                                </li>
-                                <li>
-                                    <a 
-                                        href="#" 
-                                        v-if="user.fetchingData"
-                                    >
-                                            Cargando...
-                                    </a>
-                                    <a 
-                                        href="#" 
-                                        @click.prevent="fetchLogout"
-                                        v-else
-                                    >
-                                        Salir
-                                    </a>
-                                </li>
-                            </ul>
+                            <a 
+                                href="#" 
+                                @click.prevent="fetchLogout"
+                                v-else
+                            >
+                                Salir
+                            </a>
                         </li>
                     </template>
                     <template v-else>
                         <li>
                             <router-link to="login"
-                            >Login</router-link>
+                            >Ingresar</router-link>
                         </li>
                         <li>
                             <router-link to="register" 
-                            >Register</router-link>
+                            >Registrar</router-link>
                         </li>
                     </template>
                 </ul>

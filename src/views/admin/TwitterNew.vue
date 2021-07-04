@@ -1,27 +1,39 @@
 <template>
     <div>
+        <div v-if="twitters.save.error">
+            {{ twitters.save.error }}
+        </div>
         <form action="#" @submit.prevent="saveTwitterEvent">
             
             <div>
-                <label for="text">Texto</label>
+                <label for="text">Contenido</label>
 
                 <div>
-                    <input
-                        type="text"
+                    <textarea
                         name="text"
                         autofocus
-                        v-model="form.text"
-                    />
+                        v-model="form.text" 
+                    >
+                    </textarea>
                 </div>
             </div>
-
-            <button type="submit">Guardar</button>
+            <button 
+                type="submit"
+                :disabled="twitters.save.fetchingData"
+            >
+                <div v-if="twitters.save.fetchingData">
+                    Cargando...
+                </div>
+                <div v-else>
+                    Twitear
+                </div>
+            </button>
         </form>
     </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
     name: 'Home',
@@ -32,6 +44,11 @@ export default {
             }
         };
     },
+    computed: {
+        ...mapState([
+            'twitters',
+        ]),
+    },
     methods:{
         ...mapActions([
             'saveTwitter',
@@ -40,6 +57,7 @@ export default {
             this.saveTwitter({
                 text: this.form.text,
             });
+            this.form.text = '';
         },
     },
 };
