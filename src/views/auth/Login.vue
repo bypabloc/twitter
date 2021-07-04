@@ -3,6 +3,7 @@
         <div>
             <div>
                 <main>
+                    <div v-if="user?.error" class="alert alert-danger">{{ user.error }}</div>
                     <form action="#" @submit.prevent="loginEvent">
                         <h1>Por favor, inicia sesión</h1>
 

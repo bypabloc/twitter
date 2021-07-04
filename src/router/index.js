@@ -5,7 +5,10 @@ const routes = [
     {
         path: '/',
         name: '/',
-        component: () => import('../components/Home'),
+        component: () => import('../views/Welcome'),
+        meta: {
+            authRequired: false,
+        },
     },
     {
         path: '/login',
@@ -24,9 +27,9 @@ const routes = [
         },
     },
     {
-        path: '/dashboard',
-        name: 'dashboard',
-        component: () => import('../views/admin/Dashboard'),
+        path: '/home',
+        name: 'home',
+        component: () => import('../views/admin/Home'),
         meta: {
             authRequired: true,
         },
@@ -49,7 +52,7 @@ router.beforeEach((to, from, next) => {
     if (authRequired && !isLogged){
         next({ path: 'login' })
     } else if ((!authRequired && isLogged) && (to.name === 'login' || to.name === 'register')){
-        next({ path: 'dashboard' })
+        next({ path: 'home' })
     } else {
         next()
     }

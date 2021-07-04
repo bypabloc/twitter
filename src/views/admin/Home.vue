@@ -11,6 +11,7 @@
                         </div>
                         <div :class="'col-12 col-sm-12 col-md-7 col-lg-8 col-xl-9 col-xxl-9 theme--100 p-2'">
                         </div>
+                        List twits
                     </div>
                 </main>
             </div>
@@ -19,11 +20,36 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
-    name: 'Dashboard',
-    components: {
+    name: 'Home',
+    data() {
+        return {
+            form: {
+                text: "",
+            },
+        };
     },
-    methods: {
+    computed: {
+        // map `this.theme` to `this.$store.getters.theme`
+        ...mapState([
+            'twitter',
+        ]),
+    },
+    methods:{
+        ...mapActions([
+            'fetchTwitters',
+            'saveTwitter',
+        ]),
+        saveTwitterEvent() {
+            this.saveTwitter({
+                text: this.form.text,
+            });
+        },
+    },
+    created(){
+        this.fetchTwitters()
     },
 };
 </script>

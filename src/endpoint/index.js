@@ -13,7 +13,9 @@ export default {
     },
 
     logout(){
-        return { }
+        return endpoint.get({
+            url: 'logout',
+        })
     },
 
     getConfig(){
@@ -58,4 +60,24 @@ export default {
     postSkill( text, percentage, icon ){
         return { text, percentage, icon }
     },
+}
+
+export const getError = response => {
+    const err = response?.status ? response.status : null
+
+    if(err){
+        let res = {
+            message: '',
+        }
+
+        if(err===422){
+            res.message = response?.data?.errors ? response.data.errors.join('<br/>') : ''
+        }else if(err===401){
+            res.message = response?.data?.message ? response.data.message.join('<br/>') : ''
+        }else{
+            res.message = response?.statusText ? response.statusText : null
+        }
+
+        return res
+    }
 }

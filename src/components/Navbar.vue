@@ -8,9 +8,9 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <template v-if="user.loggedIn">
-                        <router-link to="dashboard"
+                        <router-link to="Home"
                             :class="'nav-link theme-color--200'"
-                        >Dashboard</router-link>
+                        >Home</router-link>
                         <li class="nav-item dropdown">
                             <a :class="'link-secondary nav-link dropdown-toggle theme-color--200'" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{user.data.displayName}}
@@ -22,7 +22,19 @@
                                     >Config</router-link>
                                 </li>
                                 <li>
-                                    <a :class="'dropdown-item theme-color--700'" href="#" @click.prevent="fetchLogout">Sign out</a>
+                                    <a 
+                                        href="#" 
+                                        v-if="user.fetchingData"
+                                    >
+                                            Cargando...
+                                    </a>
+                                    <a 
+                                        href="#" 
+                                        @click.prevent="fetchLogout"
+                                        v-else
+                                    >
+                                        Salir
+                                    </a>
                                 </li>
                             </ul>
                         </li>

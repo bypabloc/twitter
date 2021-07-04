@@ -9,7 +9,7 @@ export default {
     [types.FETCH_LOGIN_REQUEST] ( state ){
         state.user.fetchingData = true;
     },
-    [types.USER_LOGIN_FAILURE] (state, error ){
+    [types.USER_LOGIN_FAILURE] (state, { error } ){
         state.user.fetchingData = false;
         state.user.data = null;
         state.user.loggedIn = null;
@@ -26,9 +26,10 @@ export default {
         state.user.data = data;
         state.user.loggedIn = true;
         localStorage.setItem('user', JSON.stringify(data))
-        router.push({ name: "dashboard" });
+        router.push({ name: "home" });
     },
     [types.USER_LOGOUT] (state){
+        state.user.fetchingData = false;
         state.user.error = null;
         state.user.register.error = null;
         state.user.data = null;
@@ -42,7 +43,7 @@ export default {
         if(data){
             state.user.loggedIn = true;
             localStorage.setItem('user', JSON.stringify(data))
-            router.push({ name: "dashboard" });
+            router.push({ name: "home" });
         }else{
             state.user.loggedIn = false;
             localStorage.removeItem('user')
