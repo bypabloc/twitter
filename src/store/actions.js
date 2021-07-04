@@ -9,7 +9,7 @@ export default {
 
         endpoint.login({ user, password })
             .then( res => {
-                const { token, name, email, nickname } = res
+                const { token, name, email, nickname } = res.data
                 commit( types.USER_LOGIN, { token, name, email, nickname } )
             } )
             .catch( err => {
@@ -17,13 +17,14 @@ export default {
                 commit( types.USER_LOGIN_FAILURE, { error } )
             })
     },
-    register({ commit }, data ) {
-        endpoint.register(data)
+    register({ commit }, { email, password, name, nickname } ) {
+        endpoint.register({ email, password, name, nickname })
             .then(res => {
-                endpoint.createConfig(data.email)
-                commit( types.USER_LOGIN, res.user )
+                const { token, name, email, nickname } = res.data
+                commit( types.USER_LOGIN, { token, name, email, nickname } )
             } )
             .catch( err => {
+                console.log('err',err)
                 const error = getError(err.response)?.message ? getError(err.response).message : 'Inaccesible'
                 commit( types.USER_REGISTER_FAILURE, { error } )
             })

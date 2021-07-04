@@ -49,6 +49,10 @@ export default {
             localStorage.removeItem('user')
         }
     },
+    [types.USER_REGISTER_FAILURE] (state, { error } ){
+        state.user.register.fetchingData = false;
+        state.user.register.error = error;
+    },
     [types.FETCH_CONFIG_REQUEST] (state){
         state.data.config.fetchingData = true;
         state.data.config.err = null;

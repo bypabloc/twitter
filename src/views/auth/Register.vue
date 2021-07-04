@@ -13,7 +13,6 @@
 
                             <div class="col-md-6">
                                 <input
-                                    id="name"
                                     type="name"
                                     class="form-control"
                                     name="name"
@@ -26,11 +25,26 @@
                         </div>
 
                         <div class="mb-3 row">
+                            <label for="nickname" class="col-md-4 col-form-label text-md-right">Alias</label>
+
+                            <div class="col-md-6">
+                                <input
+                                    type="name"
+                                    class="form-control"
+                                    name="nickname"
+                                    value
+                                    required
+                                    autofocus
+                                    v-model="form.nickname"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
 
                             <div class="col-md-6">
                                 <input
-                                    id="email"
                                     type="email"
                                     class="form-control"
                                     name="email"
@@ -47,7 +61,6 @@
 
                             <div class="col-md-6">
                             <input
-                                id="password"
                                 type="password"
                                 class="form-control"
                                 name="password"
@@ -81,6 +94,7 @@ export default {
                 name: "Pablo Contreras",
                 email: "pacg1991@gmail.com",
                 password: "12345678",
+                nickname: 'bypabloc',
             },
         };
     },
@@ -99,6 +113,8 @@ export default {
                 {
                     email: this.form.email,
                     password: this.form.password,
+                    name: this.form.name,
+                    nickname: this.form.nickname,
                 },
             );
         },

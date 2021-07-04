@@ -8,8 +8,11 @@ export default {
             params: { user, password },
         })
     },
-    register({ email, password }){
-        return { email, password }
+    register({ email, password, name, nickname }){
+        return endpoint.post({
+            url: 'register',
+            params: { email, password, name, nickname },
+        })
     },
 
     logout(){
@@ -69,6 +72,9 @@ export const getError = response => {
         let res = {
             message: '',
         }
+
+        console.log('err',err)
+        console.log('response',response)
 
         if(err===422){
             res.message = response?.data?.errors ? response.data.errors.join('<br/>') : ''
