@@ -72,35 +72,12 @@ export default {
         endpoint.saveTwitter({ text })
             .then(res => {
                 console.log('res',res)
-                // const { token, name, email, nickname } = res.data
-                // commit( types.FETCH_TWITTER_SAVE_SUCCESS, { token, name, email, nickname } )
+                const { token, created_by, created_at } = res.data
+                commit( types.FETCH_TWITTER_SAVE_SUCCESS, { token, created_by, created_at } )
             } )
             .catch( err => {
                 const error = getError(err.response)?.message ? getError(err.response).message : 'Inaccesible'
                 commit( types.FETCH_TWITTER_SAVE_FAILURE, { error } )
             })
-        /*
-        if(id){
-            endpoint.saveProud( saveProud )
-                .then(() => {
-                    commit(types.SAVE_PROUD, {
-                        ...saveProud,
-                        id,
-                    } )
-                } )
-        }else{
-            endpoint.postProud( saveProud )
-                .then(proud => {
-                    commit(types.ADD_PROUD, {
-                        ...saveProud,
-                        id: proud.id,
-                    } )
-                } )
-                .catch(err => {
-                        console.log('error',err)
-                    }
-                )
-        }
-        */
     },
 }
