@@ -1,7 +1,6 @@
 <template>
     <div class="container-tweet">
-        <div v-if="twitters.save.error">
-            {{ twitters.save.error }}
+        <div v-if="twitters.save.error" class="bar error" v-html="twitters.save.error">
         </div>
         <form action="#" @submit.prevent="saveTwitterEvent">
             <textarea 

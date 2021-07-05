@@ -6,7 +6,12 @@
                     
                 </div>
                 <div class="card-body ">
-                    <div v-if="user?.register?.error">{{ user.register.error }}</div>
+                    <div 
+                        v-if="user?.register?.error"
+                        class="center bar error"
+                        v-html="user?.register?.error"
+                    >
+                    </div>
                     <form class="form" action="#" @submit.prevent="submit">
                         <h1 class="center">Registrate en Twitter</h1>
 

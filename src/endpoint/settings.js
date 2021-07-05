@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-// const baseURL = 'https://bypabloc-twitter-api.herokuapp.com/api/v1'
-const baseURL = 'http://twitter-api.prueba/api/v1'
+const baseURL = 'https://bypabloc-twitter-api.herokuapp.com/api/v1'
+// const baseURL = 'http://twitter-api.prueba/api/v1'
 
 let headers = {
     'Content-Type' : 'application/json',
