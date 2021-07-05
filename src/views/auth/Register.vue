@@ -92,10 +92,10 @@ export default {
     data() {
         return {
             form: {
-                name: "Pablo Contreras",
-                email: "pacg1991@gmail.com",
-                password: "12345678",
-                nickname: 'bypabloc',
+                name: "",
+                email: "",
+                password: "",
+                nickname: '',
             },
         };
     },
