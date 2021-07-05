@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+html, body {
+    margin: 0px;
+    min-height: 100vh;
+}
+
+.flex{
+    display: flex;
+}
+
+.flex-space-between{
+    display: flex;
+    justify-content: space-between;
+}
+
+.full-height {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+.box {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+.container {  
+    // margin: 50px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    // border: 5px solid;
+    border-radius: 5px;
+}
+
+.container-home {
+    border-left: 2px solid;
+    border-right: 2px solid;
+    padding: 20px;
+}
+@media screen and (min-width: 768px) {
+    .container-home {  
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .container-home {  
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+}
+
+.container-tweet {
+    border-bottom: 5px solid;
+    margin: 0px;
+}
+
+.timelime {
+    padding: 0px;
+}
+.timelime-item {
+    padding-bottom: 20px;
+}
+.timelime-item-title {
+    font-weight: bold;
+}
+.timelime-item-title span {
+    font-weight: normal;
+    padding-left: 10px;
+}
+.timelime-item-content {
+    font-weight: normal;
+    margin: 10px;
+}
+.timelime-item-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 20px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    transition: top 500ms ease-in-out;
+}
+  
+nav.scroll-up,
+nav:focus-within {
+    top: 0;
+}
+
+nav.scroll-down {
+    top: -100%;
+}
+
+.links {
+    display: flex;
+    margin: 0 -1em;
+}
+
+.links a {
+    display: inline-block;
+    margin: 0 1em;
+}
+
+.logo {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.button-submit{
+    padding: 9px 18px;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    opacity: 0.5;
+    pointer-events: none;
+    transition: background 0.2s ease;
+    margin: 10px;
+}
+.button-submit.active{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.form input {
+    padding: 20px;
+    width: 500px;
+    margin-top: 10px;
+    border: none;
+    border-bottom: 1px solid rgba(82, 168, 236, 0.6);
+    outline-style: none;
+    padding-bottom: 1px;
+}
+
+.tweet-input {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+.tweet-input:focus {
+    outline: none !important;
+    border:1px solid red;
+    box-shadow: 0 0 10px #719ECE;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@mixin text-contrast($n) {
+    $color-brightness: round((red($n) * 299) + (green($n) * 587) + (blue($n) * 114) / 1000);
+    $light-color: round((red(#ffffff) * 299) + (green(#ffffff) * 587) + (blue(#ffffff) * 114) / 1000);
+    @if abs($color-brightness) < ($light-color/2){
+        color: white;
+    }
+  
+    @else {
+        color: black;
+    }
+}
+
+$black: #262626;
+$white: #FBFBFB;
+
+$amber: #FFC107;
+$blue-gray: #607D8B;
+$blue: #2196F3;
+$brown: #795548;
+$cyan: #00BCD4;
+$deep-orange: #FF5722;
+$deep-purple: #673AB7;
+$gray: #9E9E9E;
+$green: #4CAF50;
+$indigo: #3F51B5;
+$light-blue: #03A9F4;
+$light-green: #8BC34A;
+$lime: #CDDC39;
+$orange: #FF9800;
+$pink: #E91E63;
+$purple: #9C27B0;
+$red: #F44336;
+$teal: #26A69A;
+$yellow: #FFEB3B;
+
+$colors: (
+    "black": $black,
+    "white": $white,
+
+    "amber": $amber,
+    "blue-gray": $blue-gray,
+    "blue": $blue,
+    "brown": $brown,
+    "cyan": $cyan,
+    "deep-orange": $deep-orange,
+    "deep-purple": $deep-purple,
+    "gray": $gray,
+    "green": $green,
+    "indigo": $indigo,
+    "light-blue": $light-blue,
+    "light-green": $light-green,
+    "lime": $lime,
+    "orange": $orange,
+    "pink": $pink,
+    "purple": $purple,
+    "red": $red,
+    "teal": $teal,
+    "yellow": $yellow
+);
+
+@function tint($color, $percentage) {
+    @return mix($white, $color, $percentage);
+}
+@function shade($color, $percentage) {
+    @return mix($black, $color, $percentage);
+}
+
+@mixin make-color-classes( $class_prefix, $color_name, $color ){
+
+    $swatch_variations: (90, 80, 70, 60, 50, 40, 30, 20, 10, 0, -10, -20, -30, -40, -50, -60, -70, -80, -90);
+
+    $i: 0.5;
+    @each $variation in $swatch_variations {
+
+        $color_number: $i * 100;
+        $swatch_color: '';
+
+        $swatch_color_50_more: '';
+        
+        @if ($variation > 0){
+            $swatch_color: tint($color,$variation);
+        }@else if ($variation < 0) {
+            $swatch_color: shade($color,($variation*-1));
+        }@else{
+            $color_number: 500;
+            $swatch_color: $color;
+        }
+
+        $swatch_color_50_more: shade($swatch_color,20);
+
+        .theme-#{$color_name}-#{$color_number} {
+            @include text-contrast($swatch_color);
+            background-color: $swatch_color;
+        }
+        .theme-#{$color_name}-#{$color_number} a {
+            @include text-contrast($swatch_color);
+            font-weight: bold;
+        }
+
+        .theme-#{$color_name}-#{$color_number}:link {
+            @include text-contrast($swatch_color);
+            font-weight: bold;
+        }
+        .theme-#{$color_name}-#{$color_number}:visited {
+            @include text-contrast($swatch_color);
+        }
+        .theme-#{$color_name}-#{$color_number}:hover {
+            @include text-contrast($swatch_color);
+        }
+        .theme-#{$color_name}-#{$color_number} button:hover {
+            @include text-contrast($swatch_color);
+            background-color: $swatch_color_50_more;
+        }
+        .theme-#{$color_name}-#{$color_number} a:hover {
+            color: $swatch_color_50_more;
+        }
+        .theme-#{$color_name}-#{$color_number}:active {
+            @include text-contrast($swatch_color);
+        }
+
+        .theme-border-#{$color_name}-#{$color_number} {
+            border: 6px solid $swatch_color !important;
+        }
+
+        .theme-bg-#{$color_name}-#{$color_number} {
+            background-color: $swatch_color;
+        }
+
+        .theme-color-#{$color_name}-#{$color_number} {
+            @include text-contrast($swatch_color);
+        }
+        .theme-color-#{$color_name}-#{$color_number}:link {
+            @include text-contrast($swatch_color);
+        }
+        .theme-color-#{$color_name}-#{$color_number}:visited {
+            @include text-contrast($swatch_color);
+        }
+        .theme-color-#{$color_name}-#{$color_number}:hover {
+            @include text-contrast($swatch_color);
+        }
+        .theme-color-#{$color_name}-#{$color_number}:active {
+            @include text-contrast($swatch_color);
+        }
+
+        $i: $i + 0.5;
+    } 
+}
+
+@each $color_name, $color in $colors {
+    @include make-color-classes('color', $color_name, $color);
+}
+

@@ -1,36 +1,50 @@
 <template>
-    <div>
-        <div>
-            <div>
-                <main>
-                    <div v-if="user?.error">{{ user.error }}</div>
-                    <form action="#" @submit.prevent="loginEvent">
-                        <h1>Por favor, inicia sesión</h1>
+    <div :class="'container theme-'+[theme]+'-400'">
+        <div :class="'card theme-'+[theme]+'-200'">
+            <div class="card-header">
+                
+            </div>
+            <div class="card-body ">
+                <div v-if="user?.error">{{ user.error }}</div>
+                <form class="form" action="#" @submit.prevent="loginEvent">
+                    <h1 class="center">Ingresa a Twitter</h1>
 
-                        <div>
-                            <label>Usuario</label>
-                            <input type="email" v-model="form.email" placeholder="name@example.com">
-                        </div>
-                        <div>
-                            <label>Contraseña</label>
-                            <input type="password" v-model="form.password" placeholder="Password">
-                        </div>
+                    <div class="center">
+                        <input 
+                            type="email" 
+                            class="inputtext" 
+                            v-model="form.email" 
+                            placeholder="Correo"
+                            :class="'theme-'+[theme]+'-200'"
+                        >
+                    </div>
+                    <div class="center">
+                        <input 
+                            type="password" 
+                            class="inputtext" 
+                            v-model="form.password" 
+                            placeholder="Contraseña"
+                            :class="'theme-'+[theme]+'-200'"
+                        >
+                    </div>
 
-                        <div>
-                            <button
-                                type="submit"
-                                :disabled="user.fetchingData"
-                            >
-                                <div v-if="user.fetchingData">
-                                    <loading/>
-                                </div>
-                                <div v-else>
-                                    Iniciar
-                                </div>
-                            </button>
-                        </div>
-                    </form>
-                </main>
+                    <div class="center">
+                        <button
+                            type="submit"
+                            :class="'theme-'+[theme]+'-500 ' + 'button-submit ' + (user.fetchingData ? '' : 'active')"
+                        >
+                            <div v-if="user.fetchingData">
+                                <loading/>
+                            </div>
+                            <div v-else>
+                                Iniciar
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                
             </div>
         </div>
     </div>

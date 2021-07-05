@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div :class="'full-height theme-'+[theme]+'-100'">
         <navbar/>
-        <main>
+        <div class="">
             <router-view></router-view>
-        </main>
+        </div>
     </div>
 </template>
 
@@ -16,9 +16,3 @@ export default {
     },
 };
 </script>
-
-<style lang="scss" scoped>
-    .main-screen {
-        min-height: 100vh;
-    }
-</style>

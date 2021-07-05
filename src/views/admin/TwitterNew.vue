@@ -1,33 +1,33 @@
 <template>
-    <div>
+    <div class="container-tweet">
         <div v-if="twitters.save.error">
             {{ twitters.save.error }}
         </div>
         <form action="#" @submit.prevent="saveTwitterEvent">
-            
-            <div>
-                <label for="text">Contenido</label>
+            <textarea 
+                class="tweet-input" 
+                v-model="form.text" 
+                @keydown.enter.exact.prevent
+                @keyup.exact="messageCounter"
+                placeholder="¿Que esta pasando?"
+            ></textarea>
 
-                <div>
-                    <textarea
-                        name="text"
-                        autofocus
-                        v-model="form.text" 
-                    >
-                    </textarea>
-                </div>
+            <div class="flex-space-between">
+                <span> {{ max }}</span>
+
+                <button 
+                    type="submit"
+                    :class="'theme-'+[theme]+'-500 ' + 'button-submit ' + (twitters.save.fetchingData ? '' : 'active')"
+                >
+                    <div v-if="twitters.save.fetchingData">
+                        Cargando...
+                    </div>
+                    <div v-else>
+                        Twittear
+                    </div>
+                </button>
             </div>
-            <button 
-                type="submit"
-                :disabled="twitters.save.fetchingData"
-            >
-                <div v-if="twitters.save.fetchingData">
-                    Cargando...
-                </div>
-                <div v-else>
-                    Twitear
-                </div>
-            </button>
+
         </form>
     </div>
 </template>
@@ -41,7 +41,10 @@ export default {
         return {
             form : {
                 text: '',
-            }
+            },
+            message: '',
+            max: 250,
+            less: 250,
         };
     },
     computed: {
@@ -58,7 +61,23 @@ export default {
                 text: this.form.text,
             });
             this.form.text = '';
+            this.less = 250;
+        },
+        messageCounter(){
+            this.max = this.less - this.form.text.length;
         },
     },
 };
 </script>
+
+<style scoped>
+    .tweet-input {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 18px;
+        padding: 15px 12px;
+        outline: none;
+        width: 100%;
+    }
+</style>

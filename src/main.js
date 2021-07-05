@@ -2,6 +2,10 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
+import { mapState } from "vuex";
+
+import './assets/style.scss'
+import '/node_modules/@fortawesome/fontawesome-free/css/all.min.css'
 
 const app = createApp(App)
 
@@ -13,6 +17,15 @@ if(user){
 }else{
     store.dispatch('fetchUser',null)
 }
+
+app.mixin({  
+    computed: {
+        // map `this.theme` to `this.$store.getters.theme`
+        ...mapState([
+            'theme',
+        ]),
+    },
+})
 
 app.use(store)
 app.use(router)
