@@ -47,7 +47,7 @@ export const getError = response => {
         if(err===422){
             res.message = response?.data?.errors ? response.data.errors.join('<br/>') : ''
         }else if(err===401){
-            res.message = response?.data?.message ? response.data.message.join('<br/>') : ''
+            res.message = response?.data?.errors ? response.data.errors.join('<br/>') : ''
         }else{
             res.message = response?.statusText ? response.statusText : null
         }
