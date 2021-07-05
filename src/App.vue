@@ -1,5 +1,5 @@
 <template>
-    <div :class="'full-height theme-'+[theme]+'-200'">
+    <div :class="'full-height theme-'+[theme]+'-100'">
         <navbar/>
         <div class="">
             <router-view></router-view>

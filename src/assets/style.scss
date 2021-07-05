@@ -1,7 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
 html, body {
     margin: 0px;
-    height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+.flex-space-between{
+    display: flex;
+    justify-content: space-between;
 }
 
 .full-height {
@@ -312,6 +325,9 @@ $colors: (
         .theme-#{$color_name}-#{$color_number} button:hover {
             @include text-contrast($swatch_color);
             background-color: $swatch_color_50_more;
+        }
+        .theme-#{$color_name}-#{$color_number} a:hover {
+            color: $swatch_color_50_more;
         }
         .theme-#{$color_name}-#{$color_number}:active {
             @include text-contrast($swatch_color);
