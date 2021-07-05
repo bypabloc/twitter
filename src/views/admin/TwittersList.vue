@@ -1,11 +1,25 @@
 <template>
-    <div>
+    <div class="timelime">
         <div v-if="twitters.fetchingData">
             Cargando...
         </div>
         <div v-else>
             <br/>
-            <div v-for="(value, index) in twitters.data.data" :key="index">
+            <div class="timelime-item" v-for="(value, index) in twitters.data.data" :key="index">
+                <div 
+                    class="timelime-item-title"
+                >
+                    <div
+                        v-if="value?.created_by?.name"
+                    >
+                        {{ value.created_by.name }}
+                    </div>
+                    <div
+                        v-else
+                    >
+                        Anonimo
+                    </div>
+                </div>
                 <div>
                     {{ value.text }}
                 </div>

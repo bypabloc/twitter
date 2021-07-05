@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container-tweet">
         <div v-if="twitters.save.error">
             {{ twitters.save.error }}
         </div>
@@ -9,6 +9,7 @@
                 v-model="form.text" 
                 @keydown.enter.exact.prevent
                 @keyup.exact="messageCounter"
+                placeholder="¿Que esta pasando?"
             ></textarea>
 
             <div class="flex-space-between">
@@ -22,7 +23,7 @@
                         Cargando...
                     </div>
                     <div v-else>
-                        Twitear
+                        Twittear
                     </div>
                 </button>
             </div>

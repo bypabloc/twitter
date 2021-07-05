@@ -1,5 +1,5 @@
 <template>
-    <div :class="'container theme-'+[theme]+'-200'">
+    <div :class="'container-home theme-'+[theme]+'-200'">
         <twitter-new/>
         <twitters-list/>
     </div>
