@@ -10,16 +10,28 @@
                     <h1 class="center">Ingresa a Twitter</h1>
 
                     <div class="center">
-                        <input type="email" class="inputtext" v-model="form.email" placeholder="Correo">
+                        <input 
+                            type="email" 
+                            class="inputtext" 
+                            v-model="form.email" 
+                            placeholder="Correo"
+                            :class="'theme-'+[theme]+'-200'"
+                        >
                     </div>
                     <div class="center">
-                        <input type="password" class="inputtext"  v-model="form.password" placeholder="Contraseña">
+                        <input 
+                            type="password" 
+                            class="inputtext" 
+                            v-model="form.password" 
+                            placeholder="Contraseña"
+                            :class="'theme-'+[theme]+'-200'"
+                        >
                     </div>
 
                     <div class="center">
                         <button
                             type="submit"
-                            :class="'button-submit ' + (user.fetchingData ? '' : 'active')"
+                            :class="'theme-'+[theme]+'-500 ' + 'button-submit ' + (user.fetchingData ? '' : 'active')"
                         >
                             <div v-if="user.fetchingData">
                                 <loading/>

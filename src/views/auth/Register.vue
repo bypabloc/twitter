@@ -1,72 +1,80 @@
 <template>
     <div>
-        <div>Register</div>
-        <div>
-            <div v-if="user?.register?.error">{{ user.register.error }}</div>
-            <form action="#" @submit.prevent="submit">
-                
-                <div>
-                    <label for="name">Name</label>
-
-                    <div>
-                        <input
-                            type="name"
-                            name="name"
-                            value
-                            required
-                            autofocus
-                            v-model="form.name"
-                        />
-                    </div>
+        <div :class="'container theme-'+[theme]+'-400'">
+            <div :class="'card theme-'+[theme]+'-200'">
+                <div class="card-header">
+                    
                 </div>
+                <div class="card-body ">
+                    <div v-if="user?.register?.error">{{ user.register.error }}</div>
+                    <form class="form" action="#" @submit.prevent="submit">
+                        <h1 class="center">Registrate en Twitter</h1>
 
-                <div>
-                    <label for="nickname">Alias</label>
-
-                    <div>
-                        <input
-                            type="name"
-                            name="nickname"
-                            value
-                            required
-                            v-model="form.nickname"
-                        />
-                    </div>
+                        <div class="center">
+                            <input
+                                type="text"
+                                name="name"
+                                value
+                                required
+                                autofocus
+                                placeholder="Nombres"
+                                v-model="form.name"
+                                :class="'theme-'+[theme]+'-200'"
+                            />
+                        </div>
+                        <div class="center">
+                            <input
+                                type="text"
+                                name="nickname"
+                                value
+                                required
+                                placeholder="Alias"
+                                v-model="form.nickname"
+                                :class="'theme-'+[theme]+'-200'"
+                            />
+                        </div>
+                        <div class="center">
+                            <input
+                                type="email"
+                                name="email"
+                                value
+                                required
+                                placeholder="Correo"
+                                v-model="form.email"
+                                :class="'theme-'+[theme]+'-200'"
+                            />
+                        </div>
+                        <div class="center">
+                            <input
+                                type="password"
+                                name="password"
+                                value
+                                required
+                                placeholder="Contraseña"
+                                v-model="form.password"
+                                :class="'theme-'+[theme]+'-200'"
+                            />
+                        </div>
+                        
+                        <div class="center">
+                            <button
+                                type="submit"
+                                :class="'theme-'+[theme]+'-500 ' + 'button-submit ' + (user?.register?.fetchingData ? '' : 'active')"
+                            >
+                                <div v-if="user?.register?.fetchingData">
+                                    Cargando...
+                                </div>
+                                <div v-else>
+                                    Registrarse
+                                </div>
+                            </button>
+                        </div>
+                    </form>
                 </div>
-
-                <div>
-                    <label for="email">Email</label>
-
-                    <div>
-                        <input
-                            type="email"
-                            name="email"
-                            value
-                            required
-                            v-model="form.email"
-                        />
-                    </div>
+                <div class="card-footer">
+                    
                 </div>
-
-                <div>
-                    <label for="password">Password</label>
-
-                    <div>
-                    <input
-                        type="password"
-                        name="password"
-                        required
-                        v-model="form.password"
-                    />
-                    </div>
-                </div>
-
-                <div>
-                    <div>
-                        <button type="submit">Register</button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </template>

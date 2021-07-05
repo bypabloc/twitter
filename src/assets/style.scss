@@ -82,19 +82,6 @@ nav a {
     letter-spacing: 0.2em;
 }
 
-.inputtext {
-    background-color: #FFFFEC;
-    border: 1px solid #ECECFF;
-    border-radius: 5px 5px 5px 5px;
-    box-shadow: -1px 0 8px -5px #000000;
-    font-size: 14px;
-}
-.inputtext:hover, .inputtext:focus {
-    background-color: #FFFFFF;
-    border: 1px solid #56B4EF;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) inset, 0 0 8px rgba(82, 168, 236, 0.6);
-}
-
 .button-submit{
     padding: 9px 18px;
     border: none;
@@ -102,8 +89,6 @@ nav a {
     border-radius: 50px;
     font-size: 16px;
     font-weight: 700;
-    background: #1da1f2;
-    color: #fff;
     cursor: pointer;
     opacity: 0.5;
     pointer-events: none;
@@ -113,9 +98,6 @@ nav a {
 .button-submit.active{
     opacity: 1;
     pointer-events: auto;
-}
-.button-submit:hover{
-    background: #0d8bd9;
 }
 
 .form input {
@@ -294,6 +276,8 @@ $colors: (
 
         $color_number: $i * 100;
         $swatch_color: '';
+
+        $swatch_color_50_more: '';
         
         @if ($variation > 0){
             $swatch_color: tint($color,$variation);
@@ -304,13 +288,12 @@ $colors: (
             $swatch_color: $color;
         }
 
+        $swatch_color_50_more: shade($swatch_color,20);
+
         .theme-#{$color_name}-#{$color_number} {
             @include text-contrast($swatch_color);
             background-color: $swatch_color;
         }
-        // .theme-#{$color_name}-#{$color_number} {
-        //     @include text-contrast($swatch_color);
-        // }
         .theme-#{$color_name}-#{$color_number} a {
             @include text-contrast($swatch_color);
             font-weight: bold;
@@ -325,6 +308,10 @@ $colors: (
         }
         .theme-#{$color_name}-#{$color_number}:hover {
             @include text-contrast($swatch_color);
+        }
+        .theme-#{$color_name}-#{$color_number} button:hover {
+            @include text-contrast($swatch_color);
+            background-color: $swatch_color_50_more;
         }
         .theme-#{$color_name}-#{$color_number}:active {
             @include text-contrast($swatch_color);
