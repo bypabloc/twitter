@@ -1,5 +1,5 @@
 export default {
-    theme: 'blue-gray',
+    theme: 'yellow',
 
     user: {
         fetchingData: false,

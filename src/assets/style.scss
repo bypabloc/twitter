@@ -21,16 +21,24 @@ html, body {
 }
 
 .container {  
+    // margin: 50px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
     padding: 20px;
+    // border: 5px solid;
+    border-radius: 5px;
+}
+
+.card {  
+    padding: 20px;
+    border-radius: 5px;
 }
   
 .center {
-    // width:100vh;
-    // height: 100vh;
     display: flex;
     justify-content: center;
 }
-
 
 nav {
     position: sticky;
@@ -74,8 +82,51 @@ nav a {
     letter-spacing: 0.2em;
 }
 
+.inputtext {
+    background-color: #FFFFEC;
+    border: 1px solid #ECECFF;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: -1px 0 8px -5px #000000;
+    font-size: 14px;
+}
+.inputtext:hover, .inputtext:focus {
+    background-color: #FFFFFF;
+    border: 1px solid #56B4EF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+}
 
+.button-submit{
+    padding: 9px 18px;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    background: #1da1f2;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.5;
+    pointer-events: none;
+    transition: background 0.2s ease;
+    margin: 10px;
+}
+.button-submit.active{
+    opacity: 1;
+    pointer-events: auto;
+}
+.button-submit:hover{
+    background: #0d8bd9;
+}
 
+.form input {
+    padding: 20px;
+    width: 500px;
+    margin-top: 10px;
+    border: none;
+    border-bottom: 1px solid rgba(82, 168, 236, 0.6);
+    outline-style: none;
+    padding-bottom: 1px;
+}
 
 
 
