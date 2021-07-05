@@ -12,6 +12,10 @@ html, body {
     min-height: 100vh;
 }
 
+.flex{
+    display: flex;
+}
+
 .flex-space-between{
     display: flex;
     justify-content: space-between;
@@ -70,10 +74,26 @@ html, body {
     padding: 0px;
 }
 .timelime-item {
-    padding: 0px;
+    padding-bottom: 20px;
 }
 .timelime-item-title {
     font-weight: bold;
+}
+.timelime-item-title span {
+    font-weight: normal;
+    padding-left: 10px;
+}
+.timelime-item-content {
+    font-weight: normal;
+    margin: 10px;
+}
+.timelime-item-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 20px;
 }
 
 .center {

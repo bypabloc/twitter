@@ -7,29 +7,43 @@
             <br/>
             <div class="timelime-item" v-for="(value, index) in twitters.data.data" :key="index">
                 <div 
-                    class="timelime-item-title"
+                    class="timelime-item-title flex"
                 >
                     <div
                         v-if="value?.created_by?.name"
                     >
                         {{ value.created_by.name }}
+                        <span>@{{ value.created_by.nickname }}</span>
                     </div>
                     <div
                         v-else
                     >
-                        Anonimo
+                        Anónimo
+                    </div>
+                    <span>- {{ moment(value.created_at).fromNow(true) }}</span>
+                </div>
+                <div
+                    class="timelime-item-content"
+                >
+                    <div
+                        v-if="value?.text"
+                    >
+                        {{ value.text }}
+                    </div>
+                    <div
+                        v-else
+                    >
+                        Anónimo
                     </div>
                 </div>
-                <div>
-                    {{ value.text }}
+                <div
+                    class="timelime-item-footer"
+                >
+                    <i class="far fa-comment"></i>
+                    <i class="fas fa-retweet"></i>
+                    <i class="far fa-heart"></i>
+                    <i class="fas fa-share-alt"></i>
                 </div>
-                <div>
-                    {{ value.created_at }}
-                </div>
-                <div>
-                    {{ value.created_by }}
-                </div>
-                <br/>
             </div>
         </div>
     </div>
@@ -37,6 +51,9 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+
+import moment from 'moment';
+moment.locale('es');
 
 export default {
     name: 'Home',
@@ -61,7 +78,8 @@ export default {
         },
     },
     created(){
-        this.fetchTwitters()
+        this.fetchTwitters();
+        this.moment = moment;
     },
 };
 </script>

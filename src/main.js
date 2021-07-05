@@ -5,6 +5,7 @@ import router from './router'
 import { mapState } from "vuex";
 
 import './assets/style.scss'
+import '/node_modules/@fortawesome/fontawesome-free/css/all.min.css'
 
 const app = createApp(App)
 
